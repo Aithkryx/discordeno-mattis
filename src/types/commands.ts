@@ -1,4 +1,4 @@
-import { Message } from "https://raw.githubusercontent.com/Skillz4Killz/Discordeno/master/structures/message.ts";
+import { Message } from 'https://raw.githubusercontent.com/Skillz4Killz/Discordeno/master/structures/message.ts';
 
 export interface Command {
   callback: (message: Message, args: string[]) => unknown;
@@ -6,6 +6,6 @@ export interface Command {
   guildOnly: boolean;
   requiresArgs: boolean;
   devOnly: boolean;
-  userPermission: String;
-  botPermission: String;
+  userPermission: string;
+  botPermission: string;
 }
