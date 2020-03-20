@@ -3,20 +3,21 @@ import { logGreen, logRed } from 'https://raw.githubusercontent.com/Skillz4Killz
 import { configs } from '../../configs.ts';
 import { botCache } from '../../mod.ts';
 // import { cache } from 'https://raw.githubusercontent.com/Skillz4Killz/Discordeno/master/utils/cache.ts';
+import * as functions from '../utils/functions.ts';
 
 export const commandHandler = async (message: Message) => {
   if (message.author().bot()) return;
 
   const guildId = message.guild_id();
 
-  const prefix = checkPrefix(guildId);
+  const prefix = functions.checkPrefix(guildId);
 
   if (!message.content().startsWith(prefix) && !message.content().startsWith('-'))
     return;
 
   const [commandName, ...args] = message.content().substring(prefix.length).split(' ');
 
-  const command = checkCommand(commandName);
+  const command = functions.checkCommand(commandName);
   if (!command)
     return;
 
@@ -33,32 +34,4 @@ export const commandHandler = async (message: Message) => {
   catch (error) {
     logRed(error);
   }
-};
-
-export const checkPrefix = (
-  guildId: string | undefined
-) => {
-  const prefix = guildId
-    ? botCache.guild_prefixes.get(guildId)
-    : configs.prefix;
-  return prefix || configs.prefix;
-};
-
-export const checkCommand = (commandName: string) => {
-  const command = botCache.commands.get(commandName);
-  if (command) return command;
-
-  // Check aliases if the command wasn't found
-  const alias = botCache.command_aliases.get(commandName);
-  if (!alias) return;
-
-  return botCache.commands.get(alias);
-};
-
-export const logCommand = (
-  message: Message,
-  guildName: string,
-  type: string
-) => {
-  logGreen(`[COMMAND - ${type}] by ${message.author().tag()} in ${guildName}`);
 };
