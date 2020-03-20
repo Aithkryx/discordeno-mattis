@@ -19,4 +19,3 @@ This repo is meant as a template which you can use to create a Discord bot very 
 - [x] Monitors to contain functions you want to run on all messages
 - [x] Commands to contain all your bots amazing commands.
 - [x] Inhibitors to contain pre-check requirements on commands before running a command
-

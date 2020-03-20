@@ -1,0 +1,20 @@
+{
+  "name": "discordeno-mattis",
+  "version": "1.0.0",
+  "description": "This repo is meant as a template which you can use to create a Discord bot very easily using the Discordeno library.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "deno --allow-net --allow-read mod.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mattis6666/discordeno-mattis.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mattis6666/discordeno-mattis/issues"
+  },
+  "homepage": "https://github.com/Mattis6666/discordeno-mattis#readme"
+}
