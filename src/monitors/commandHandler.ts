@@ -21,12 +21,16 @@ export const commandHandler = async (message: Message) => {
   if (!command)
     return;
 
-  if (command.devOnly && !configs.developers.includes(message.author().id()))
-    return;
+  if (!configs.developers.includes(message.author().id())) {
+    if (command.devOnly)
+      return;
+    if (command.nsfw && !message.guild_id() || message.guild_id() && !message.channel()?.nsfw())
+      return functions.errorMessage(message, 'This command is NSFW, but this is not a NSFW channel!');
+  }
   if (command.guildOnly && !guildId)
-    return message.channel().send_message('This command can only be used on a guild!');
+    return functions.errorMessage(message, 'This command can only be used on a guild!');
   if (command.requiresArgs && !args.length)
-    return message.channel().send_message("This command requires args, but you didn't provide any!");
+    return functions.errorMessage(message, "This command requires args, but you didn't provide any!");
 
   try {
     await command.callback(message, args);

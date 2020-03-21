@@ -9,8 +9,7 @@ import { Command } from './src/types/commands.ts';
 export const botCache = {
   commands: new Map<string, Command>(),
   command_aliases: new Map<string, string>(),
-  guild_prefixes: new Map<string, string>(),
-  inhibitors: new Map<string, (message: Message, command: Command, guild: Guild | undefined) => boolean>()
+  guild_prefixes: new Map<string, string>()
 };
 
 const import_directory = async (path: string) => {
@@ -29,7 +28,7 @@ const import_directory = async (path: string) => {
 };
 
 await Promise.all(
-  ['./src/commands', './src/inhibitors'].map(path => import_directory(path))
+  ['./src/commands'].map(path => import_directory(path))
 );
 
 export const Bot = new Client({

@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Mattis6666/discordeno-mattis/issues"
   },
-  "homepage": "https://github.com/Mattis6666/discordeno-mattis#readme"
+  "homepage": "https://github.com/Mattis6666/discordeno-mattis#readme",
+  "dependencies": {
+    "@types/node-fetch": "^2.5.5"
+  }
 }

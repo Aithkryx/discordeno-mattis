@@ -10,15 +10,42 @@ export const checkPrefix = (guildId: string | undefined) => {
 };
 
 export const checkCommand = (commandName: string) => {
-    const command = botCache.commands.get(commandName);
-    if (command) return command;
-
-    const alias = botCache.command_aliases.get(commandName);
-    if (!alias) return;
-
-    return botCache.commands.get(alias);
+    const alias = botCache.command_aliases.get(commandName)
+    return alias ? botCache.commands.get(alias) : botCache.commands.get(commandName);
 };
 
 export const logCommand = (message: Message, guildName: string, type: string) => {
-    logGreen(`[COMMAND - ${type}] by ${message.author().tag()} in ${guildName}`);
+    return logGreen(`[COMMAND - ${type}] by ${message.author().tag()} in ${guildName}`);
 };
+
+export const errorMessage = async (message: Message, text: string) => {
+    const msg = await message.channel().send_message(text);
+    return setTimeout(() => {
+        msg.delete('');
+        if (message.guild_id())
+            message.delete('');
+    }, 1000 * 5);
+}
+
+export const handleResponse = (response: any) => {
+    return response.json().then(function (json: Object) {
+        return response.ok ? json : Promise.reject(json);
+    });
+}
+
+export const numToMonth = (month: number) => {
+    return [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+    ][month - 1];
+}

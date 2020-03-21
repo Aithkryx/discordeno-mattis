@@ -2,18 +2,15 @@ import { Message } from 'https://raw.githubusercontent.com/Skillz4Killz/Discorde
 import { botCache } from '../../mod.ts';
 
 export const command = (message: Message) => {
-  message.channel().send_message('Pinging...')
-    .then(msg => {
-      msg.edit(`Pong! Took \`${msg.timestamp() - message.timestamp()}\`s.`);
-    })
+    return;
 };
 
-botCache.commands.set('ping', {
+botCache.commands.set('example', {
   callback: command,
   nsfw: false,
   guildOnly: false,
   requiresArgs: false,
-  devOnly: false,
+  devOnly: true,
   userPermission: '',
   botPermission: ''
 });
